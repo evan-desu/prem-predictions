@@ -2,7 +2,7 @@
     font-family: 'premierleague';
     src: url('/fonts/premier-league.ttf');
   }
-
+  
 .landing--container > h1 {
     font-family: 'premierleague', sans-serif;
     color: white;

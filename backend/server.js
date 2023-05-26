@@ -96,13 +96,13 @@ app.get('/matches/:matchday', async (req, res) => {
   }
 });
 
-app.get("/register", async (req, res) => {
+app.get("/users", async (req, res) => {
   try {
       const allRegisters = await knex.select("*").from("users");
       res.json(allRegisters);
   } catch (error) {
       console.error(error);
-      res.status(500).send({ message: error });
+      res.status(400).send({ message: error });
   }
 });
 
@@ -121,7 +121,7 @@ app.post("/register", async (req, res) => {
     res.status(201).send({ message: 'Password hashed successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).send({ message: error });
+    res.status(400).send({ message: error });
   }
 });
 

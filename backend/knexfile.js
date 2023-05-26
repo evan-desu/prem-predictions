@@ -10,6 +10,7 @@ module.exports = {
     connection: {
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
+      port: process.env.DB_PORT,
     },
     pool: {
       min: 2,

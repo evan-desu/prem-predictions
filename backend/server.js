@@ -16,7 +16,14 @@ const apiToken = '1cd23c4390de48fea7e7c49475601586';
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    // Check if the origin is in the allowed origins array or if it's undefined (for cases like Postman)
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
 }));
 
 app.get('/', (req, res) => {
@@ -28,19 +35,18 @@ app.listen(8000, () => {
 })
 
 // const teamsDataUrl = "https://api.football-data.org/v4/competitions/PL/teams";
-
-//cron.schedule('0 * * * *', async () => {
+/*
   const fetchDataAndPopulateMatchTable = async (matchday) => {
     try {
       const apiUrl = `https://api.football-data.org/v4/competitions/PL/matches?matchday=${matchday}`;
       const response = await axios.get(apiUrl, {
         headers: { 'X-Auth-Token': apiToken },
       });
-
+  
       const matches = response.data.matches;
       const matchesPerGameweek = 10;
       let insertedMatches = 0;
-
+  
       for (const match of matches) {
         if (insertedMatches >= matchesPerGameweek) {
           break;
@@ -69,16 +75,18 @@ app.listen(8000, () => {
 
         insertedMatches++;
       }
+      console.log('Match table populated successfully.');
     } catch (error) {
       console.error('Error while populating match table:', error);
     }
   };
-
-  // Fetch and populate the match table for matchday 38 only
-  const matchday = 38;
-  fetchDataAndPopulateMatchTable(matchday);
-// });
-
+  
+  // Fetch and populate the match table for matchday 37 and 38 only
+  const matchdays = [37, 38];
+  for (const matchday of matchdays) {
+    fetchDataAndPopulateMatchTable(matchday);
+  }
+*/
 app.get('/matches/:matchday', async (req, res) => {
   const matchday = req.params.matchday;
 

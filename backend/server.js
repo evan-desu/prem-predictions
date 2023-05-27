@@ -108,6 +108,21 @@ app.get('/upcoming-fixtures', async (req, res) => {
   }
 });
 
+app.get('/previous-results', async (req, res) => {
+  try {
+    const currentMatchday = 38;
+    const previousMatchday = currentMatchday - 1;
+
+    const previousResults = await knex('match')
+      .where('gameweek', previousMatchday)
+      .select('*');
+
+    res.json(previousResults);
+  } catch (error) {
+    console.error('Error while retrieving previous results:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 app.get("/users", async (req, res) => {
   try {

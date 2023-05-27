@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Landing from './components/Landing';
 import Navbar from './components/Navbar';
 import Register from './components/Register';
-import Selection from './components/Selection';
+// import Selection from './components/Selection';
 
 function App() {
   // STATE
@@ -18,7 +18,7 @@ function App() {
       <Navbar toggleRegister={toggleRegister} />
       {showRegister && <Register onClose={toggleRegister} />}
       <Landing />
-      < Selection />
+      {/* < Selection /> */}
     </>
   );
 }

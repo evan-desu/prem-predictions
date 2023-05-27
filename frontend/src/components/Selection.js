@@ -5,7 +5,7 @@ export default function Selection({ onSeePastResults }) {
   const [upcomingFixtures, setUpcomingFixtures] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/upcoming-fixtures')
+    fetch('https://prem-predictions-aavx.onrender.com/upcoming-fixtures')
       .then((response) => response.json())
       .then((data) => {
         setUpcomingFixtures(data);

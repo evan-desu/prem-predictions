@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'premierleague';
+    src: url('/fonts/premier-league.ttf');
+  }
+  
+.landing--container > h1 {
+    font-family: 'premierleague', sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px blue, -1px -1px 2px blue, 1px -1px 2px blue, -1px 1px 2px blue;
+}

@@ -1,17 +1,35 @@
 import React from 'react';
+import '../styles/Navbar.css';
 
-function Navbar() {
-    return (
-        <nav className="navbar--container">
-          <h4 className="navbar--logo">PPLogo</h4>
-          <section className="navbar--links">
-            <h4>Home</h4>
-            <h4>About</h4>
-            <h4>Login</h4>
-            <h4>Register</h4>
-          </section>
-        </nav>
-    )
+function Navbar({ toggleRegister }) {
+  return (
+    <nav className="navbar--container">
+      <h4 className="navbar--logo">PPLogo</h4>
+      <section className="navbar--links">
+        <h4>Home</h4>
+        <h4 onClick={toggleRegister}>Register</h4>
+        <h4>Login</h4>
+      </section>
+    </nav>
+  );
 }
 
 export default Navbar;
+
+
+
+// import React from 'react';
+// import '../styles/Navbar.css';
+
+// export default function Navbar({toggleRegister}) {
+//     return (
+//         <nav className="navbar--container">
+//           <h4 className="navbar--logo">PPLogo</h4>
+//           <section className="navbar--links">
+//             <h4>Home</h4>
+//             <h4 onClick={ toggleRegister }>Register</h4>
+//             <h4>Login</h4>
+//           </section>
+//         </nav>
+//     )
+// }

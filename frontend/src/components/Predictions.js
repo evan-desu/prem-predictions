@@ -79,14 +79,13 @@ export default function Predictions() {
         })
           .then((response) => response.json())
           .then((responseData) => {
-            console.log(responseData); // Handle the response as needed
+            console.log(responseData);
           })
           .catch((error) => {
             console.log('Error submitting predictions:', error);
           });
       };
       
-
   return (
     <main className="predictions--container">
       <section>

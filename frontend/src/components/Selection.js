@@ -44,15 +44,13 @@ export default function Selection({ onSeePastResults, onMakePredictions }) {
       </section>
       <section className="selection--upcoming-fixtures">
         <table>
-          <thead>
+          <tbody>
             <tr>
               <th>Date</th>
               <th>Home Team</th>
               <th>Kickoff</th>
               <th>Away Team</th>
             </tr>
-          </thead>
-          <tbody>
             {upcomingFixtures.map((fixture) => (
               <tr key={fixture.id}>
                 <td>{formatDate(fixture.date)}</td>

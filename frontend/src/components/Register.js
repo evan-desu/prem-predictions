@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Register.css';
 
-export default function Register({ onClose }) {
+export default function Register({ onClose, onRegister }) {
   // STATE
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -42,8 +42,9 @@ export default function Register({ onClose }) {
         // Reset the form
         setUsername('');
         setPassword('');
-        alert(`Welcome to Prem Predictions, ${username}!`);
+       // alert(`Welcome to Prem Predictions, ${username}!`);
         onClose();
+        onRegister(username);
       })
       .catch((error) => {
         console.error('Registration error:', error);

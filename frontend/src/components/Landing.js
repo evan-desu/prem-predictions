@@ -4,7 +4,7 @@ import PastResults from './PastResults';
 import Predictions from './Predictions';
 import '../styles/Landing.css';
 
-export default function Landing() {
+export default function Landing({ onHomeClick }) {
   const [showSelection, setShowSelection] = useState(false);
   const [showLanding, setShowLanding] = useState(true);
   const [showPastResults, setShowPastResults] = useState(false);
@@ -39,19 +39,13 @@ export default function Landing() {
       )}
 
       {showSelection && (
-        <Selection
-          onSeePastResults={handleSeePastResults} 
-          onMakePredictions={handleMakePredictions}
-        />
+        <Selection onSeePastResults={handleSeePastResults} onMakePredictions={handleMakePredictions} />
       )}
 
-      {showPredictions && (
-        <Predictions />
-      )}
+      {showPredictions && <Predictions />}
 
-      {showPastResults && (
-        <PastResults />
-      )}
+      {showPastResults && <PastResults />}
+
     </main>
   );
 }

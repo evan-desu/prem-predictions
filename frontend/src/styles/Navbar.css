@@ -1,11 +1,13 @@
 body, .navbar--container {
     margin: 0;
+    box-shadow: inset 0px -10px 10px -10px rgba(176,176,176, 0.5);
+    font-family: 'Reith Sans', serif;
 } 
 
 .navbar--container {
     display: flex;
     justify-content: space-between;
-    background-color: antiquewhite;
+    background-color: azure;
     padding-left: 15px;
     padding-right: 15px;
 }

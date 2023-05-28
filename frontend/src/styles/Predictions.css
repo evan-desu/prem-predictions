@@ -1,0 +1,89 @@
+/*
+@font-face {
+    font-family: 'Reith Sans';
+    src: url('/fonts/BBCReithSans.ttf');
+  }
+
+.logo {
+    width: 30px;
+}
+
+.selection--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding-top: 20px;
+    font-size: 13px;
+    font-family: 'Reith Sans', serif;
+}
+
+.selection--buttons {
+    display: flex;
+    gap: 2em;
+    font-family: 'Reith Sans', serif;
+}
+
+.selection--buttons > button {
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: azure;
+}
+
+.selection--upcoming-fixtures table {
+    border-collapse: collapse;
+    background-color: white;
+    table-layout: fixed;
+    width: 100%;
+}
+  
+.selection--upcoming-fixtures th,
+.selection--upcoming-fixtures td {
+    border: 1px solid black;
+    padding: 8px;
+    vertical-align: top;
+}
+  
+.selection--upcoming-fixtures th {
+    background-color: #f2f2f2;
+}
+  
+.selection--upcoming-fixtures .logo {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+*/
+
+table {
+    border-collapse: collapse;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding-top: 20px;
+    font-size: 13px;
+    font-family: 'Reith Sans', serif;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.logo {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.predictions--container input[type="text"] {
+    width: 70px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }

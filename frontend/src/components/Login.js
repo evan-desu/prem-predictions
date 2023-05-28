@@ -31,6 +31,7 @@ export default function Login({ onLogin, onClose }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        onClose();
         onLogin(username);
       })
       .catch((error) => {
@@ -41,6 +42,7 @@ export default function Login({ onLogin, onClose }) {
   const handleReset = () => {
     setUsername('');
     setPassword('');
+    onClose();
   }
 
   return (

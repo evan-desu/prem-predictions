@@ -1,4 +1,4 @@
-import React, { useEffect ,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/PastResults.css';
 
 export default function PastResults() {
@@ -6,7 +6,7 @@ export default function PastResults() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://prem-predictions-aavx.onrender.com/previous-results')
+        fetch('http://localhost:8000/previous-results')
         .then((response) => response.json())
         .then((data) => {
             setResults(data);

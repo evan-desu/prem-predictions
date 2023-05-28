@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Selection.css';
+import Predictions from './Predictions';
 
-export default function Selection({ onSeePastResults }) {
+export default function Selection({ onSeePastResults, onMakePredictions }) {
   const [upcomingFixtures, setUpcomingFixtures] = useState([]);
+  const [showPredictions, setShowPredictions] = useState(false);
 
   useEffect(() => {
-    fetch('https://prem-predictions-aavx.onrender.com/upcoming-fixtures')
+    fetch('http://localhost:8000/upcoming-fixtures')
       .then((response) => response.json())
       .then((data) => {
         setUpcomingFixtures(data);
@@ -28,14 +30,19 @@ export default function Selection({ onSeePastResults }) {
     return `${hours}:${minutes}`;
   };
 
+  const handleMakePredictions = () => {
+    onMakePredictions();
+    setShowPredictions(true);
+  }
+
   return (
-    <main className="landing--container">
+    <main className="selection--container">
       <section className="selection--buttons">
-        <button>Make Predictions</button>
+        <button onClick={handleMakePredictions}>Make Predictions</button>
         <button onClick={onSeePastResults}>See Past Results</button>
         <button>View Leaderboard</button>
       </section>
-      <section className="selection--upcoming fixtures">
+      <section className="selection--upcoming-fixtures">
         <table>
           <thead>
             <tr>
@@ -63,6 +70,7 @@ export default function Selection({ onSeePastResults }) {
           </tbody>
         </table>
       </section>
+      {showPredictions && <Predictions />}
     </main>
   );
 }

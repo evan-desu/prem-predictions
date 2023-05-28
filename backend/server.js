@@ -12,6 +12,7 @@ const allowedOrigins = ["http://localhost:3000", "https://prem-predictions-top.o
 const cron = require('node-cron');
 const bcrypt = require('bcrypt');
 const apiToken = '1cd23c4390de48fea7e7c49475601586';
+const jwt = require('jsonwebtoken');
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -163,30 +164,61 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-      const {user_name, password} = req.body;
-      const user = await knex("users")
-      .first("*")
-      .where({user_name: user_name});
-      if (user) {
-          const validPassword = await bcrypt.compare(password, user.password);
-          if(validPassword) {
-              res.status(200).json(user.id);
-          } else {
-              res.json("Invalid password.");
-          }
+    const { user_name, password } = req.body;
+    const user = await knex("users").first("*").where({ user_name: user_name });
+    if (user) {
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (validPassword) {
+        // Generate JWT token
+        const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: '1h' });
+        res.status(200).json({ token });
       } else {
-          res.status(404).json("User not found.");
-      }        
-  } 
-  catch (error) {
-      console.error(error)
-      res.status(500).send({message:error})
+        res.json("Invalid password.");
+      }
+    } else {
+      res.status(404).json("User not found.");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: error });
   }
 });
 
-/*
-Still need POST "/predictions" to allow users to submit their 
-predictions for a match, creating a new entry in the prediction table.
-Also need GET "/leaderboard" endpoint that retrieves  leaderboard data 
-from leaderboard table, allowing users to view their accumulated points.
-*/
+
+app.post('/predictions', async (req, res) => {
+  try {
+    const predictions = req.body;
+
+    await Promise.all(
+      predictions.map(async (prediction) => {
+        const { userId, matchId, homePrediction, awayPrediction } = prediction;
+
+        await knex('prediction').insert({
+          user_id: userId,
+          match_id: matchId,
+          home_prediction: homePrediction,
+          away_prediction: awayPrediction
+        });
+      })
+    );
+
+    res.status(200).json({ message: 'Predictions submitted successfully' });
+  } catch (error) {
+    console.log('Error submitting predictions:', error);
+    res.status(500).json({ error: 'An error occurred while submitting predictions' });
+  }
+});
+
+app.get('/leaderboard', async (req, res) => {
+  try {
+    const leaderboard = await knex('leaderboard')
+      .join('users', 'leaderboard.user_id', '=', 'users.id')
+      .select('users.username', 'leaderboard.points')
+      .orderBy('leaderboard.points', 'desc');
+
+    res.json(leaderboard);
+  } catch (error) {
+    console.error('Error while retrieving leaderboard:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});

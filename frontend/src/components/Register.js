@@ -28,7 +28,7 @@ export default function Register({ onClose }) {
       password: password,
     };
 
-    fetch('https://prem-predictions-aavx.onrender.com/register', {
+    fetch('http://localhost:8000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

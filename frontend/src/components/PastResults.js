@@ -6,7 +6,7 @@ export default function PastResults() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:8000/previous-results')
+        fetch('https://prem-predictions-aavx.onrender.com/previous-results')
         .then((response) => response.json())
         .then((data) => {
             setResults(data);

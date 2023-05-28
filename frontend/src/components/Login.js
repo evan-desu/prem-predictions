@@ -18,7 +18,7 @@ export default function Login({ onLogin, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    fetch('http://localhost:8000/login', {
+    fetch('https://prem-predictions-aavx.onrender.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

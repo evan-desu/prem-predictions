@@ -1,5 +1,3 @@
-Certainly! Here's an updated README file for your PremPredictions app repository on GitHub:
-
 # PremPredictions
 
 PremPredictions is a game where users can guess the scores of upcoming Premier League matches. If users guess a score correctly, they receive points. The more correct scores they get, the more points they earn. The app also displays past Premier League results. All data is sourced from the [Football-Data API](https://www.football-data.org/).
